@@ -1,0 +1,20 @@
+<ul class="nav nav-tabs" role="tablist" data-type="<%= address_id %>">
+  <li class="<%= form.object.invoice? ? '' : 'active' %>" role="presentation">
+    <a href="#billing">
+      <label for="" data-hook="recipe-option-label">
+        <i class="glyphicon glyphicon-user"></i>
+        <%= Spree.t(:recipe) %>
+        <%= form.radio_button :invoice, 0, checked: !form.object.invoice? %>
+      </label>
+    </a>
+  </li>
+  <li class="<%= form.object.invoice? ? 'active' : '' %>" role="presentation">
+    <a>
+      <label for="" data-hook="invoice-option-label">
+        <i class="glyphicon glyphicon-list-alt"></i>
+        <%= Spree.t(:invoice) %>
+        <%= form.radio_button :invoice, 1, checked: form.object.invoice? %>
+      </label>
+    </a>
+  </li>
+</ul>

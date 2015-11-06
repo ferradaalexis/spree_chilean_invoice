@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-9">
+    <% billing_address = @order.bill_address %>
+
+    <%= form.fields_for :bill_address do |bill_form| %>
+      <%= render 'spree/address/billing_form', form: bill_form, address_id: 'b', address_type: 'billing', address: @order.bill_address %>
+    <% end %>
+
+    <%= form.fields_for :ship_address do |ship_form| %>
+      <%= render 'spree/address/shipping_form', form: ship_form, address_id: 's', address_type: 'shipping', address: @order.ship_address, invoice: @order.bill_address.invoice? %>
+    <% end %>
+
+    <%= hidden_field_tag 'order[use_billing]', 1 %>
+
+  </div>
+</div>
+
+<div class="well text-right form-buttons" data-hook="buttons">
+  <%= submit_tag Spree.t(:save_and_continue), :class => 'btn btn-lg btn-success' %>
+  <% if try_spree_current_user %>
+    <span data-hook="save_user_address">
+      &nbsp; &nbsp;
+      <%= check_box_tag 'save_user_address', '1', try_spree_current_user.respond_to?(:persist_order_address) %>
+      <%= label_tag :save_user_address, Spree.t(:save_my_address) %>
+    </span>
+  <% end %>
+</div>

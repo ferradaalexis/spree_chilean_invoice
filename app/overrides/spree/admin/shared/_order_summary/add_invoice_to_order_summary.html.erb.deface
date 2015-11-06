@@ -1,0 +1,11 @@
+<!-- insert_top 'table#order_tab_summary tbody.additional-info' -->
+<tr>
+  <td id="order_invoice_or_recipe" data-hook="invoice_or_recipe">
+    <strong><%= Spree.t(:purchase_type) %>:</strong>
+  </td>
+  <td>
+    <span class="label label-info">
+      <%= @order.bill_address.invoice? ? Spree.t(:invoice_purchase) : Spree.t(:recipe_purchase) %>
+    </span>
+  </td>
+</tr>

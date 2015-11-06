@@ -1,0 +1,14 @@
+<!-- insert_top 'div[data-hook="bill_address_wrapper"] .panel-body' -->
+<% if @order.bill_address.invoice? %>
+  <%= f.fields_for :bill_address do |ba_form| %>
+    <div class="form-group <%= "b-row" %>">
+      <%= ba_form.label :company, Spree.t(:company) %>
+      <%= ba_form.text_field :company, class: 'form-control' %>
+    </div>
+
+    <div class="form-group <%= "b-row" %>">
+      <%= ba_form.label :company_activity, Spree.t(:company_activity) %>
+      <%= ba_form.text_field :company_activity, class: 'form-control' %>
+    </div>
+  <% end %>
+<% end %>
